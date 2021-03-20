@@ -1,15 +1,25 @@
-import { Category } from "../model/Category";
+import { Category } from "../../model/Category";
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
-} from "./ICategoriesRepository";
+} from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[];
 
-  constructor() {
+  private static ISNTANCE: CategoriesRepository;
+
+  private constructor() {
     this.categories = [];
   }
+
+  public static getInstance(): CategoriesRepository {
+    if (!CategoriesRepository.ISNTANCE) {
+      CategoriesRepository.ISNTANCE = new CategoriesRepository();
+    }
+    return CategoriesRepository.ISNTANCE;
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   findByname(_name: string): Category {
     throw new Error("Method not implemented.");
