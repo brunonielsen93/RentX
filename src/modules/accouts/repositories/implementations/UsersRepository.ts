@@ -22,8 +22,8 @@ class UsersRepository implements IUsersRepository {
     const user = this.repository.create({
       name,
       email,
-      driver_license,
       password,
+      driver_license,
       avatar,
       id,
     });
